@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01251af256ca72046b19536ec5c03fa6
+guid: f187f9c6eeee83b4d86b78a59104befd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -167,91 +167,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: back running_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a62284a0ffdba1241b867fb76ed93c2d
-      internalID: 213663182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: back running_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 434aba917a4b43847ab7ece365eaf7d4
-      internalID: 486133078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: back running_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: decac36d0290ac747ae1e11ad0163bae
-      internalID: -418039033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: back running_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24af03371d34d544fb0b23a6eef210e2
-      internalID: 196999070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: back running_4
+      name: FMP-Player front (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -265,8 +181,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2db870ad498d1094e8766a40b0891122
-      internalID: -277677181
+      spriteID: 976e6571b708356448b7128c81d598c7
+      internalID: -1004185662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FMP-Player front (2)_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16fce459c02b9834984d671da262b711
+      internalID: -1693574978
       vertices: []
       indices: 
       edges: []
@@ -282,11 +219,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      back running_2: -418039033
-      back running_3: 196999070
-      back running_1: 486133078
-      back running_4: -277677181
-      back running_0: 213663182
+      FMP-Player front (2)_1: -1693574978
+      FMP-Player front (2)_0: -1004185662
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
