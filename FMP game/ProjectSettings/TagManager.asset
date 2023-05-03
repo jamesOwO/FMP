@@ -12,13 +12,13 @@ TagManager:
   - Water
   - UI
   - 
+  - floorbase
+  - 
+  - trees
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: base ground
+    uniqueID: 3577026705
+    locked: 0
+  - name: Player
+    uniqueID: 1310819165
+    locked: 0
+  - name: trees
+    uniqueID: 1795640751
     locked: 0
