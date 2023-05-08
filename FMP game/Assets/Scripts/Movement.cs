@@ -18,9 +18,15 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     public GameObject floor;
 
+    [SerializeField] private LayerMask groundMask;
+    private Camera mainCamera;
+
+
 
     void Start()
     {
+        mainCamera = Camera.main;
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         coll = GetComponent<BoxCollider>();
@@ -37,8 +43,10 @@ public class Movement : MonoBehaviour
 
         // Calculate the direction to move the player
         Vector3 movementDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
+
         animator.SetFloat("Left/Right", verticalMovement);
         animator.SetFloat("Up/Down", horizontalMovement);
+
         if (horizontalMovement > 0 || horizontalMovement < 0)
         {
             animator.SetFloat("Speed", 1);
@@ -51,18 +59,39 @@ public class Movement : MonoBehaviour
         {
             animator.SetFloat("Speed", 0);
         }
+
         this.transform.position += movementDirection * speed;
 
+        animator.SetBool("shadowForm", false);
+
         if (Input.GetKeyDown(KeyCode.Space))
+            Dash();
+    }
+
+    private void Dash()
+    {
+        var (success, position) = GetMousePosition();
+        if (success)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (floor.GetComponent<Collider>().Raycast(ray, out hit, Mathf.Infinity))
-            {
-                this.transform.position += hit.point * dashspeed;
-            }
-
-
+            animator.SetBool("shadowForm", true);
+            this.transform.position = position;
         }
     }
+
+    private (bool success, Vector3 position) GetMousePosition()
+    {
+        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        {
+            // The Raycast hit something, return with the position.
+            return (success: true, position: hitInfo.point);
+        }
+        else
+        {
+            // The Raycast did not hit anything.
+            return (success: false, position: Vector3.zero);
+        }
+    }
+
 }
