@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -12,11 +14,21 @@ public class Movement : MonoBehaviour
     public float speed = 0.1f;
     public float dashspeed = 1f;
 
-
+    public float ability1duration = 1.2f;
     public Animator animator;
     private BoxCollider coll;
     private Rigidbody rb;
     public GameObject floor;
+    public GameObject ability1;
+    
+    
+    Stopwatch stopwatch = new Stopwatch();
+    public double ability1_duration = 1.3;
+    public double ability1_cooldown = 3;
+    double ability1_lastuse;
+
+
+
 
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
@@ -25,6 +37,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        stopwatch.Start();
+
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();
@@ -35,13 +49,12 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        // This will detect forward and backward movement
+
+
         horizontalMovement = Input.GetAxis("Horizontal");
 
-        // This will detect sideways movement
         verticalMovement = Input.GetAxis("Vertical");
 
-        // Calculate the direction to move the player
         Vector3 movementDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
 
         animator.SetFloat("Left/Right", verticalMovement);
@@ -66,6 +79,8 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Dash();
+
+        Attack();
     }
 
     private void Dash()
@@ -78,18 +93,34 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    private void Attack()
+    {
+        var (success, position) = GetMousePosition();
+
+        if (Input.GetKeyDown(KeyCode.E) && success && ability1_lastuse > ability1_cooldown)
+        {
+            Instantiate(ability1, position, Quaternion.identity);
+            ability1_lastuse = Convert.ToDouble(stopwatch.Elapsed);
+        }
+        if (Convert.ToDouble(stopwatch.Elapsed) > ability1_duration)
+        {
+            Destroy(ability1);
+        }
+
+    }
+
+
     private (bool success, Vector3 position) GetMousePosition()
     {
         var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
         {
-            // The Raycast hit something, return with the position.
             return (success: true, position: hitInfo.point);
         }
         else
         {
-            // The Raycast did not hit anything.
             return (success: false, position: Vector3.zero);
         }
     }
