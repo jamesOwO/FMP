@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     Stopwatch stopwatch = new Stopwatch();
     public double ability1_duration = 1.3;
     public double ability1_cooldown = 3;
-    double ability1_lastuse;
+    double ability1_lastuse = 0;
 
 
 
@@ -98,10 +98,11 @@ public class Movement : MonoBehaviour
     {
         var (success, position) = GetMousePosition();
 
-        if (Input.GetKeyDown(KeyCode.E) && success && ability1_lastuse > ability1_cooldown)
+        if (Input.GetKeyDown(KeyCode.E) && success )
         {
             Instantiate(ability1, position, Quaternion.identity);
-            ability1_lastuse = Convert.ToDouble(stopwatch.Elapsed);
+            ability1_lastuse = Convert.ToDouble(stopwatch.Elapsed) + ability1_cooldown;
+
         }
         if (Convert.ToDouble(stopwatch.Elapsed) > ability1_duration)
         {
