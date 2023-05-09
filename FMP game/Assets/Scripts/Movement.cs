@@ -22,11 +22,9 @@ public class Movement : MonoBehaviour
     public GameObject ability1;
     
     
-    Stopwatch stopwatch = new Stopwatch();
     public double ability1_duration = 1.3;
     public double ability1_cooldown = 3;
-    double ability1_lastuse = 0;
-
+    double ability1_next;
 
 
 
@@ -37,7 +35,6 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        stopwatch.Start();
 
         mainCamera = Camera.main;
 
@@ -49,6 +46,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        var (success, position) = GetMousePosition();
 
 
         horizontalMovement = Input.GetAxis("Horizontal");
@@ -79,7 +77,6 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Dash();
-
         Attack();
     }
 
@@ -98,15 +95,11 @@ public class Movement : MonoBehaviour
     {
         var (success, position) = GetMousePosition();
 
-        if (Input.GetKeyDown(KeyCode.E) && success )
+        if (Input.GetKeyDown(KeyCode.E) && success && Time.time > ability1_next)
         {
+            UnityEngine.Debug.Log("ye");
             Instantiate(ability1, position, Quaternion.identity);
-            ability1_lastuse = Convert.ToDouble(stopwatch.Elapsed) + ability1_cooldown;
-
-        }
-        if (Convert.ToDouble(stopwatch.Elapsed) > ability1_duration)
-        {
-            Destroy(ability1);
+            ability1_next = Time.time + 3;
         }
 
     }
