@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -13,6 +14,9 @@ public class Movement : MonoBehaviour
     public float verticalMovement;
     public float speed = 0.1f;
     public float dashspeed = 1f;
+
+    public GameObject weapon;
+    public GameObject auto;
 
     public float ability1duration = 1.2f;
     public Animator animator;
@@ -97,11 +101,13 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && success && Time.time > ability1_next)
         {
-            UnityEngine.Debug.Log("ye");
             Instantiate(ability1, position, Quaternion.identity);
             ability1_next = Time.time + 3;
         }
-
+        if (Input.GetKeyDown(KeyCode.Q) && success)
+        {
+            Instantiate(auto, weapon.transform.position, Quaternion.identity);
+        }
     }
 
 
@@ -118,5 +124,4 @@ public class Movement : MonoBehaviour
             return (success: false, position: Vector3.zero);
         }
     }
-
 }
