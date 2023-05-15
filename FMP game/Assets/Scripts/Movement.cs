@@ -94,7 +94,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-
     private void Attack()
     {
         var (success, position) = GetMousePosition();

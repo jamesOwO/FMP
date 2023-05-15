@@ -11,26 +11,32 @@ public class Projectilebehaviour : MonoBehaviour
     Vector3 rotation;
     public float speed = 1;
     [SerializeField] public GameObject weapon;
+    private Quaternion _lookRotation;
+    private Vector3 _direction;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
 
-        var (success, position) = GetMousePosition(); 
-        Vector3 direction = position - transform.position;
-        Vector3 rotation = transform.position - position;
+        var (success, position) = GetMousePosition();
+        _direction = (position - transform.position).normalized;
+        _lookRotation = Quaternion.LookRotation(_direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        var (success, position) = GetMousePosition();
+        
 
-        //transform.Rotate(rotation);
-        transform.position += Vector3.MoveTowards(weapon.transform.position, position, speed);
-        Debug.Log(position);
+        transform.position += transform.forward * 0.5f;
+        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
     }
+
+
+
+
     private (bool success, Vector3 position) GetMousePosition()
     {
         var ray = mainCamera.ScreenPointToRay(Input.mousePosition);

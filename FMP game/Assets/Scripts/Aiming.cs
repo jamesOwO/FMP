@@ -7,11 +7,16 @@ public class Aiming : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
+    private Quaternion _lookRotation;
+    private Vector3 _direction;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+
+
+
     }
 
     // Update is called once per frame
