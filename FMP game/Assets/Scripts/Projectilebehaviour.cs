@@ -9,7 +9,7 @@ public class Projectilebehaviour : MonoBehaviour
     public Camera mainCamera;
     private Rigidbody rb;
     Vector3 rotation;
-    public float speed = 1;
+    public float speed;
     [SerializeField] public GameObject weapon;
     private Quaternion _lookRotation;
     private Vector3 _direction;
@@ -28,14 +28,9 @@ public class Projectilebehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        transform.position += transform.forward * 0.5f;
+        transform.position += transform.forward * speed;
         transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
     }
-
-
-
 
     private (bool success, Vector3 position) GetMousePosition()
     {

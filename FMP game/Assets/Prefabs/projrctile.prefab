@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5107119179867846919}
   - component: {fileID: 1089938471670543292}
   - component: {fileID: 7624787851140109766}
+  - component: {fileID: 1150273715115150857}
   m_Layer: 0
   m_Name: projrctile
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   mainCamera: {fileID: 0}
-  speed: 1
+  speed: 0.1
   weapon: {fileID: 0}
 --- !u!54 &7624787851140109766
 Rigidbody:
@@ -152,3 +153,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1150273715115150857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143300066143255145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ed00b1a6b8d9a43b50316601b9d1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

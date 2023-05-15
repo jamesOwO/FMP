@@ -19,23 +19,22 @@ public class Movement : MonoBehaviour
     public GameObject auto;
 
     public float ability1duration = 1.2f;
+    public Animator hearts;
     public Animator animator;
     private BoxCollider coll;
     private Rigidbody rb;
     public GameObject floor;
     public GameObject ability1;
-    
+
+    private int health = 5;
     
     public double ability1_duration = 1.3;
     public double ability1_cooldown = 3;
     double ability1_next;
-
-
+    double auto_next;
 
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
-
-
 
     void Start()
     {
@@ -51,6 +50,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         var (success, position) = GetMousePosition();
+        hearts.SetInteger("harts", health);
 
 
         horizontalMovement = Input.GetAxis("Horizontal");
@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("shadowForm", true);
             this.transform.position = position;
-        }
+        }     
     }
 
     private void Attack()
@@ -103,9 +103,11 @@ public class Movement : MonoBehaviour
             Instantiate(ability1, position, Quaternion.identity);
             ability1_next = Time.time + 3;
         }
-        if (Input.GetKeyDown(KeyCode.Q) && success)
+        if (Input.GetMouseButton(0) && success && Time.time > auto_next)
         {
             Instantiate(auto, weapon.transform.position, Quaternion.identity);
+            auto_next = Time.time + 0.2;
+
         }
     }
 
@@ -123,4 +125,12 @@ public class Movement : MonoBehaviour
             return (success: false, position: Vector3.zero);
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health -= 1;
+        }
+    }
 }
+
