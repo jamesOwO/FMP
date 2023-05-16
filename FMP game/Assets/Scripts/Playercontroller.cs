@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 
-public class Movement : MonoBehaviour
+public class Playercontroller : MonoBehaviour
 {
     public float horizontalMovement;
     public float verticalMovement;
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
     public GameObject floor;
     public GameObject ability1;
 
-    private int health = 5;
+    [SerializeField] public int health {get; private set;} = 5;
     
     public double ability1_duration = 1.3;
     public double ability1_cooldown = 3;
@@ -36,52 +36,58 @@ public class Movement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
 
+    float damage_cooldown;
     void Start()
     {
-
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         coll = GetComponent<BoxCollider>();
-        
     }
 
     void Update()
     {
-        var (success, position) = GetMousePosition();
         hearts.SetInteger("harts", health);
+        var (success, position) = GetMousePosition();
 
-
-        horizontalMovement = Input.GetAxis("Horizontal");
-
-        verticalMovement = Input.GetAxis("Vertical");
-
-        Vector3 movementDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
-
-        animator.SetFloat("Left/Right", verticalMovement);
-        animator.SetFloat("Up/Down", horizontalMovement);
-
-        if (horizontalMovement > 0 || horizontalMovement < 0)
+        if (health > 0)
         {
-            animator.SetFloat("Speed", 1);
+            horizontalMovement = Input.GetAxis("Horizontal");
+
+            verticalMovement = Input.GetAxis("Vertical");
+
+            Vector3 movementDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
+
+            animator.SetFloat("Left/Right", verticalMovement);
+            animator.SetFloat("Up/Down", horizontalMovement);
+
+            if (horizontalMovement > 0 || horizontalMovement < 0)
+            {
+                animator.SetFloat("Speed", 1);
+            }
+            else if (verticalMovement > 0 || verticalMovement < 0)
+            {
+                animator.SetFloat("Speed", 1);
+            }
+            else
+            {
+                animator.SetFloat("Speed", 0);
+            }
+
+            this.transform.position += movementDirection * speed;
+
+            animator.SetBool("shadowForm", false);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                Dash();
+
+            Attack();
         }
-        else if (verticalMovement > 0 || verticalMovement < 0)
+        else if (health < 1)
         {
-            animator.SetFloat("Speed", 1);
+            animator.SetBool("Died", true);
         }
-        else
-        {
-            animator.SetFloat("Speed", 0);
-        }
-
-        this.transform.position += movementDirection * speed;
-
-        animator.SetBool("shadowForm", false);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Dash();
-        Attack();
     }
 
     private void Dash()
@@ -127,9 +133,14 @@ public class Movement : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy_bat")
         {
-            health -= 1;
+            if (damage_cooldown < Time.time)
+            {
+                health -= 1;
+                damage_cooldown = Time.time + 1;
+            }
+
         }
     }
 }

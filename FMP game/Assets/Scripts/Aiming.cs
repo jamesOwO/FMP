@@ -14,16 +14,12 @@ public class Aiming : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
          Aim();
-
     }
     private void Aim()
     {
