@@ -1,10 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Projectilebehaviour : MonoBehaviour
 {
+    Stopwatch stopwatch = new Stopwatch();
+    double d = 1.3;
+    TimeSpan t;
+
     [SerializeField] private LayerMask groundMask;
     public Camera mainCamera;
     private Rigidbody rb;
@@ -17,6 +23,9 @@ public class Projectilebehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stopwatch.Start();
+        t = TimeSpan.FromSeconds(d);
+
         mainCamera = Camera.main;
 
         var (success, position) = GetMousePosition();
@@ -28,6 +37,7 @@ public class Projectilebehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         transform.position += transform.forward * speed;
         transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
     }
@@ -45,4 +55,14 @@ public class Projectilebehaviour : MonoBehaviour
             return (success: false, position: Vector3.zero);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy_bat")
+        {
+            UnityEngine.Debug.Log("o");
+            Destroy(this.gameObject);
+        }
+
+    }
+
 }

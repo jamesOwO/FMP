@@ -23,6 +23,6 @@ public class Destroyafteranimation : MonoBehaviour
         {
             Destroy(gameObject);
         }
-      
+        
     }
 }

@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Playercontroller : MonoBehaviour
 {
@@ -48,9 +49,15 @@ public class Playercontroller : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            if (SceneManager.GetActiveScene().name == "First")
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
         hearts.SetInteger("harts", health);
         var (success, position) = GetMousePosition();
-
         if (health > 0)
         {
             horizontalMovement = Input.GetAxis("Horizontal");
@@ -138,9 +145,8 @@ public class Playercontroller : MonoBehaviour
             if (damage_cooldown < Time.time)
             {
                 health -= 1;
-                damage_cooldown = Time.time + 1;
+                damage_cooldown = Time.time + 0.5f;
             }
-
         }
     }
 }

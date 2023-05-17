@@ -59,8 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04552456a06a564aaf2764b97fe18f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Playercontroller: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
   speed: 4
-  target: {fileID: 0}
+  animator: {fileID: 2693372817835076648}
 --- !u!1 &288635566671000516
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 288635566671000523}
   - component: {fileID: 288635566671000521}
-  - component: {fileID: 288635566671000520}
+  - component: {fileID: 2693372817835076648}
   m_Layer: 0
   m_Name: enemy1 (1)_0
   m_TagString: Enemy_bat
@@ -146,7 +147,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &288635566671000520
+--- !u!95 &2693372817835076648
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
