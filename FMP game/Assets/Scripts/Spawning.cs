@@ -8,6 +8,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class Spawning : MonoBehaviour
 {
     public GameObject southeast, east, northeast, north, northwest, west, southwest;
+    [SerializeField] private Playercontroller Playercontroller;
+
     double roundstart;
     double current;
     public GameObject enemy;
@@ -26,16 +28,21 @@ public class Spawning : MonoBehaviour
             wave1 = true;
             wave1count += 1;
         }
-        if (wave1)
-        {
-            Instantiate(enemy, east.transform.position, Quaternion.identity);
-            Instantiate(enemy, southeast.transform.position, Quaternion.identity);
-            Instantiate(enemy, northeast.transform.position, Quaternion.identity);
-            Instantiate(enemy, north.transform.position, Quaternion.identity);
-            Instantiate(enemy, northwest.transform.position, Quaternion.identity);
-            Instantiate(enemy, west.transform.position, Quaternion.identity);
-            Instantiate(enemy, southwest.transform.position, Quaternion.identity);
-            wave1 = false;
-        }
+        if (wave1) round1();
+        
+    }
+    void round1()
+    {
+        Instantiate(enemy, east.transform.position, Quaternion.identity);
+        Instantiate(enemy, southeast.transform.position, Quaternion.identity);
+        Instantiate(enemy, northeast.transform.position, Quaternion.identity);
+        Instantiate(enemy, north.transform.position, Quaternion.identity);
+        Instantiate(enemy, northwest.transform.position, Quaternion.identity);
+        Instantiate(enemy, west.transform.position, Quaternion.identity);
+        Instantiate(enemy, southwest.transform.position, Quaternion.identity);
+        wave1 = false;
+    }
+    void round2()
+    {
     }
 }
