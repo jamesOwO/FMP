@@ -35,7 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
                 dieonce = false;
             }
         }
-        if (deathtimer > Time.time + 1)
+        if (deathtimer + 1 < Time.time && dieonce == false)
         {
             Destroy(this.gameObject);
         }
@@ -45,6 +45,13 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Projectile")
         {
             enemyhealth -= 1;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "sum")
+        {
+            enemyhealth = 0;
         }
     }
 }

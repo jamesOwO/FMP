@@ -1685,6 +1685,7 @@ MonoBehaviour:
   northwest: {fileID: 1298743667}
   west: {fileID: 2132052637}
   southwest: {fileID: 1555564260}
+  Playercontroller: {fileID: 0}
   enemy: {fileID: 288635565878507907, guid: 0f167ed0361d7c6429165530fbadb397, type: 3}
 --- !u!4 &287926837 stripped
 Transform:
@@ -23028,9 +23029,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 376858832}
     - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: speed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
       propertyPath: hearts
       value: 
       objectReference: {fileID: 916436243}
+    - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: ability1
+      value: 
+      objectReference: {fileID: 3847779548658346292, guid: 1c94e8734703f834890f551083f18846, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
