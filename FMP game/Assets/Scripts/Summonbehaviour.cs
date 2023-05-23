@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Summonbehaviour : MonoBehaviour
 {
-    [SerializeField] private Playercontroller Playercontroller;
+    private Playercontroller Playercontroller;
     public int speed;
     GameObject target;
     public Animator animator;

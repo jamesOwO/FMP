@@ -39,8 +39,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(this.gameObject);
             Playercontroller.enemieskilled += 1;
-            Debug.Log("kill");
-            Debug.Log(Playercontroller.enemieskilled);
 
         }
     }
