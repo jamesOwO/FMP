@@ -59,7 +59,6 @@ public class Projectilebehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy_bat")
         {
-            UnityEngine.Debug.Log("o");
             Destroy(this.gameObject);
         }
 

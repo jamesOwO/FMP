@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class Playercontroller : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class Playercontroller : MonoBehaviour
     public float verticalMovement;
     public float speed = 0.1f;
     public float dashspeed = 1f;
+
+    public int enemieskilled = 0;
+
+    public GameObject menuscreen;
+
+    float bleh = 3600;
 
     public GameObject weapon;
     public GameObject auto;
@@ -26,13 +33,14 @@ public class Playercontroller : MonoBehaviour
     private Rigidbody rb;
     public GameObject floor;
     public GameObject ability1;
-
+    bool menu = false;
     [SerializeField] public int health {get; private set;} = 5;
     
     public double ability1_duration = 1.3;
     public double ability1_cooldown = 3;
-    double ability1_next;
-    double auto_next;
+    public double tp_cooldown = 10;
+
+    double ability1_next, auto_next, tpnext;
 
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
@@ -40,6 +48,7 @@ public class Playercontroller : MonoBehaviour
     float damage_cooldown;
     void Start()
     {
+        enemieskilled = 0;
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();
@@ -58,7 +67,7 @@ public class Playercontroller : MonoBehaviour
         }
         hearts.SetInteger("harts", health);
         var (success, position) = GetMousePosition();
-        if (health > 0)
+        if (health > 0 && !menu)
         {
             horizontalMovement = Input.GetAxis("Horizontal");
 
@@ -94,17 +103,24 @@ public class Playercontroller : MonoBehaviour
         else if (health < 1)
         {
             animator.SetBool("Died", true);
+            bleh = Time.time + 3;
+        }
+        if (bleh < Time.time)
+        {
+
         }
     }
 
     private void Dash()
     {
         var (success, position) = GetMousePosition();
-        if (success)
+        if (success && Time.time > tpnext)
         {
             animator.SetBool("shadowForm", true);
             this.transform.position = position;
-        }     
+            tpnext = Time.time + 10;
+
+        }
     }
 
     private void Attack()
@@ -147,7 +163,14 @@ public class Playercontroller : MonoBehaviour
                 health -= 1;
                 damage_cooldown = Time.time + 0.5f;
             }
+            
+        }
+        if (collision.gameObject.tag == "menyoo")
+        {
+            menu = true;
+            menuscreen.SetActive(true);
         }
     }
+    
 }
 

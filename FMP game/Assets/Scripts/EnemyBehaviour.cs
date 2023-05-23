@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyBehaviour : MonoBehaviour
 {
     int enemyhealth = 5;
-    [SerializeField] private Playercontroller Playercontroller;
+    public Playercontroller Playercontroller;
     public int speed;
     GameObject target;
     public Animator animator;
@@ -38,6 +38,10 @@ public class EnemyBehaviour : MonoBehaviour
         if (deathtimer + 1 < Time.time && dieonce == false)
         {
             Destroy(this.gameObject);
+            Playercontroller.enemieskilled += 1;
+            Debug.Log("kill");
+            Debug.Log(Playercontroller.enemieskilled);
+
         }
     }
     private void OnTriggerEnter(Collider other)

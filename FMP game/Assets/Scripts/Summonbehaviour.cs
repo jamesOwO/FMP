@@ -14,17 +14,23 @@ public class Summonbehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Enemy_bat");
     }
 
     // Update is called once per frame
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("Enemy_bat");
-
-        Vector3 localPosition = target.transform.position - transform.position;
-        localPosition = localPosition.normalized; // The normalized direction in LOCAL space
-        transform.Translate(localPosition.x * Time.deltaTime * speed, localPosition.y * Time.deltaTime * speed, localPosition.z * Time.deltaTime * speed);
-        
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (dieonce)
+        {
+            Vector3 localPosition = target.transform.position - transform.position;
+            localPosition = localPosition.normalized; // The normalized direction in LOCAL space
+            transform.Translate(localPosition.x * Time.deltaTime * speed, localPosition.y * Time.deltaTime * speed, localPosition.z * Time.deltaTime * speed);
+        }
         
         if (deathtimer + 0.8 < Time.time && dieonce == false)
         {
