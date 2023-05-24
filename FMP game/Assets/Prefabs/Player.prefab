@@ -125,8 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalMovement: 1
   verticalMovement: 1
-  speed: 0.02
+  speed: 0.1
   dashspeed: 1
+  enemieskilled: 0
+  menuscreen: {fileID: 0}
   weapon: {fileID: 2016887901477864804}
   auto: {fileID: 3143300066143255145, guid: 5c6410b095ebbf84e88664cd2aee3de5, type: 3}
   ability1duration: 1.2
@@ -136,6 +138,7 @@ MonoBehaviour:
   ability1: {fileID: 1229481980416485727, guid: bd927e580fa0f0f4f93c7bdc4958b4c4, type: 3}
   ability1_duration: 1.3
   ability1_cooldown: 1.3
+  tp_cooldown: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 128

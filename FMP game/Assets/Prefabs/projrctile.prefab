@@ -136,7 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   mainCamera: {fileID: 0}
-  speed: 0.1
+  speed: 0.5
   weapon: {fileID: 0}
 --- !u!54 &7624787851140109766
 Rigidbody:

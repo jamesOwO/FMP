@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using Unity.PlasticSCM.Editor.WebApi;
 
 public class Playercontroller : MonoBehaviour
 {
@@ -57,16 +56,22 @@ public class Playercontroller : MonoBehaviour
         rb.freezeRotation = true;
         coll = GetComponent<BoxCollider>();
     }
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) 
+        if (Input.GetKeyDown(KeyCode.Space))
+            Dash();
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (SceneManager.GetActiveScene().name == "First")
             {
                 SceneManager.LoadScene(1);
             }
         }
+        Attack();
+
+    }
+    void FixedUpdate()
+    {
         hearts.SetInteger("harts", health);
         var (success, position) = GetMousePosition();
         if (health > 0 && !menu)
@@ -97,10 +102,8 @@ public class Playercontroller : MonoBehaviour
 
             animator.SetBool("shadowForm", false);
 
-            if (Input.GetKeyDown(KeyCode.Space))
-                Dash();
 
-            Attack();
+
         }
         else if (health == 0 && dieonce == false)
         {

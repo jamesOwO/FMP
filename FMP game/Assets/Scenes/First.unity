@@ -33282,6 +33282,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 376858832}
     - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: speed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
       propertyPath: hearts
       value: 
       objectReference: {fileID: 1771882094}
@@ -33289,6 +33293,34 @@ PrefabInstance:
       propertyPath: menuscreen
       value: 
       objectReference: {fileID: 200307100}
+    - target: {fileID: 2016887902316508048, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: weight
+      value: 0.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508048, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508048, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: priority
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508048, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508048, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: blendDistance
+      value: -1.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508051, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016887902316508051, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}

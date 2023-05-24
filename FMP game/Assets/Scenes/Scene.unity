@@ -23029,7 +23029,7 @@ PrefabInstance:
       objectReference: {fileID: 376858832}
     - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
       propertyPath: speed
-      value: 0.01
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2016887900470741373, guid: 5893111dc88062842ae99ced0c2ec257, type: 3}
       propertyPath: hearts
