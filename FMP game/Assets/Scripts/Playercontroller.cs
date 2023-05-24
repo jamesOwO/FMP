@@ -23,6 +23,8 @@ public class Playercontroller : MonoBehaviour
 
     float bleh = 3600;
 
+    bool dieonce = false;
+
     public GameObject weapon;
     public GameObject auto;
 
@@ -100,14 +102,15 @@ public class Playercontroller : MonoBehaviour
 
             Attack();
         }
-        else if (health < 1)
+        else if (health == 0 && dieonce == false)
         {
             animator.SetBool("Died", true);
             bleh = Time.time + 3;
+            dieonce = true;
         }
         if (bleh < Time.time)
         {
-
+            SceneManager.LoadScene(3);
         }
     }
 

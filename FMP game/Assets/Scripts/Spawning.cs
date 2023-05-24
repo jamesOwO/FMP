@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Spawning : MonoBehaviour
@@ -14,7 +15,7 @@ public class Spawning : MonoBehaviour
     double roundstart, round2start = 0, round3start = 0, nextwave = 0;
     double current;
     public GameObject enemy;
-    bool wave1 = false, wave2 = false, wave3 = false, subwave1, subwave2, subwave3, subwave4, subwave5, subwave6;
+    bool wave1 = false, subwave1, subwave2, subwave3, subwave4, subwave5, subwave6;
     int wavecount = 0;
     GameObject o;
     void Start()
@@ -36,20 +37,21 @@ public class Spawning : MonoBehaviour
             round1();
         }
 
-        if (wavecount == 2 )
+        if (wavecount == 2)
         {
             round2();
         }
 
-        if (wavecount == 3 )
+        if (wavecount == 3)
         {
             round3();
 
         }
+        if (wavecount == 5)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
-
-
-        
     void round1()
     {
         Debug.Log("round 1 begin");
@@ -94,8 +96,6 @@ public class Spawning : MonoBehaviour
                 Instantiate(enemy, east.transform.position, Quaternion.identity);
                 Instantiate(enemy, west.transform.position, Quaternion.identity);
                 subwave3 = true;
-                wave2 = true;
-
             }
         }
     void round3()
@@ -127,7 +127,6 @@ public class Spawning : MonoBehaviour
             Instantiate(enemy, southwest.transform.position, Quaternion.identity);
             Instantiate(enemy, southeast.transform.position, Quaternion.identity);
             subwave3 = true;
-            wave2 = true;
         }
         if (round3start + 7 < current && subwave4 == false)
         {
@@ -158,8 +157,6 @@ public class Spawning : MonoBehaviour
             Instantiate(enemy, southwest.transform.position, Quaternion.identity);
             subwave6 = true;
 
-        }
-        wave3 = true;
-        
+        }        
     }
 }
